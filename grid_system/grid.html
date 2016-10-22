@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>bootstrap_grid_system</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/grid.css">
+</head>
+<body>
+	<div class="container-fluid">
+	<!-- <div class="container"> -->
+		<h3>超小屏幕 手机 (<768px) 	小屏幕 平板 (≥768px) 	中等屏幕 桌面显示器 (≥992px) 	大屏幕 大桌面显示器 (≥1200px)</h3>
+		<h4>md类在手机和平板设备上一开始是堆叠在一起的（超小屏幕到小屏幕：&lt;992px），在中等屏幕以上（&ge;992px）变为水平排列。实现原理：源码bootstrap.css中可以看到col-*-*类本身都是没有设定width属性的，也就是100%宽度，但是在不同屏幕宽度下为sm、md和lg几种类设定了媒体查询的条件宽度，根据屏幕宽度变为1/12~100%，所以要大于媒体查询所设定的宽度才会水平排列显示，否则就竖向100%显示，这里xs类并没有通过媒体查询设置width，所以无论屏幕多宽都会按1/12~100%的比例显示，不会竖向100%显示</h4>
+		<div class="row show-grid">
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		  <div class="col-md-1">.col-md-1</div>
+		</div>
+		<div class="row show-grid">
+		  <div class="col-md-8">.col-md-8</div>
+		  <div class="col-md-4">.col-md-4</div>
+		</div>
+		<div class="row show-grid">
+		  <div class="col-md-4">.col-md-4</div>
+		  <div class="col-md-4">.col-md-4</div>
+		  <div class="col-md-4">.col-md-4</div>
+		</div>
+		<div class="row show-grid">
+		  <div class="col-md-6">.col-md-6</div>
+		  <div class="col-md-6">.col-md-6</div>
+		</div>
+		<h4>在小屏幕设备上不希望所有列堆叠在一起，同时添加xs（针对超小屏幕）和md（针对中等屏幕）类，在小屏幕（&lt;992px）上用xs类的方式布局，在桌面屏幕（&ge;992px）上用md类的方式布局。实现原理：源码bootstrap.css中宽度设定的顺序是从xs（没有媒体查询）到sm、md和lg（有媒体查询），所以当屏幕从窄变宽的过程中，宽度的设定会从xs转为md，而从宽变窄的过程中，md类的宽度变为默认的100%，但xs类的宽度设定写在sm、md和lg默认设定之后，所以还是会应用xs类的宽度</h4>
+		<!-- Stack the columns on mobile by making one full-width and the other 	half-width -->
+		<div class="row show-grid">
+		  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		</div>
+		<h4>在&lt;992px的移动设备上应用.col-xs-6，50%宽度；在&le;992px的桌面设备上应用.col-md-4，33.3%宽度</h4>
+		<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+		<div class="row show-grid">
+		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		</div>
+		
+		<!-- Columns are always 50% wide, on mobile and desktop -->
+		<div class="row show-grid">
+		  <div class="col-xs-6">.col-xs-6</div>
+		  <div class="col-xs-6">.col-xs-6</div>
+		</div>
+		<h4>针对平板设备的.col-sm-*类会在768px~992px之间应用</h4>
+		<div class="row show-grid">
+		  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+		</div>
+		<div class="row show-grid">
+		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+		  <div class="clearfix visible-xs-block"></div>
+		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		</div>
+		<h4>Responsive column resets</h4>
+		<div class="row show-grid">
+		  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3
+		  Resize your viewport or check it out on your phone for an example.</div>
+		  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+		
+		  <!-- Add the extra clearfix for only the required viewport -->
+		  <div class="clearfix visible-xs-block" id="clear"></div>
+		
+		  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+		  <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+		</div>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
